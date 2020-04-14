@@ -11,19 +11,19 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "docker build -t gcr.io/bv-poc-cd/simple-app:${BUILD_NUMBER} ."
+                sh "docker build -t gcr.io/bv-poc-cd/simple-app:release-${BUILD_NUMBER} ."
             }
         }
         stage('Push') {
             steps {
                 withDockerRegistry(credentialsId: 'gcr:bv-poc-cd', url: 'https://gcr.io/bv-poc-cd/simple-app') {
-                   sh "docker push gcr.io/bv-poc-cd/simple-app:${BUILD_NUMBER}"
+                   sh "docker push gcr.io/bv-poc-cd/simple-app:release-${BUILD_NUMBER}"
                 }
             }
         }
         stage('Update property file') {
             steps {
-                sh "echo 'IMAGE_TAG=release-${BUILD_NUMBER}' > spinnaker.properties'
+                sh "echo 'IMAGE_TAG=release-${BUILD_NUMBER}' >> spinnaker.properties"
             }
         }
     }
