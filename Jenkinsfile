@@ -24,7 +24,7 @@ pipeline {
     }
     post {
       always {
-          archiveArtifacts artifacts: 'spinakker.properties', onlyIfSuccessful: true
+          archiveArtifacts artifacts: 'spinnaker.properties', onlyIfSuccessful: true
       }
   }
 }
