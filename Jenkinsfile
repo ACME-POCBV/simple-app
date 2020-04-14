@@ -22,4 +22,9 @@ pipeline {
             }
         }
     }
+    post {
+      always {
+          archiveArtifacts artifacts: 'spinakker.properties', onlyIfSuccessful: true
+      }
+  }
 }
