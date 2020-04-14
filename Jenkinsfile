@@ -21,6 +21,11 @@ pipeline {
                 }
             }
         }
+        stage('Update property file') {
+            steps {
+                sh "echo 'IMAGE_TAG=release-${BUILD_NUMBER}' > spinnaker.properties'
+            }
+        }
     }
     post {
       always {
